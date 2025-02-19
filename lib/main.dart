@@ -7,7 +7,7 @@ String apiKey = "AIzaSyCIyR35pgtP3spCguV6MprjB1W-RSWJWTA";
 void main() {
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (_) => MyApp(),
     ),
   );
@@ -38,6 +38,15 @@ class _HomePageState extends State<HomePage> {
   String output = "";
   Translation translator = Translation(apiKey: apiKey);
 
+  void perevod() async {
+    TranslationModel tr = await translator.translate(
+      text: controller.text,
+      to: "uz",
+    );
+    output = tr.translatedText;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +58,26 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextField(),
+                TextField(
+                  controller: controller,
+                  focusNode: focusNode,
+                  maxLines: 5,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  cursorColor: Colors.white,
+                  onTapOutside: (val) {
+                    focusNode.unfocus();
+                  },
+                  decoration: InputDecoration(
+                    hintText: "Input something...",
+                    filled: true,
+                    fillColor: Colors.indigo,
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
