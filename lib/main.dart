@@ -1,10 +1,16 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:google_cloud_translation/google_cloud_translation.dart';
 
 String apiKey = "AIzaSyCIyR35pgtP3spCguV6MprjB1W-RSWJWTA";
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (_) => MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
