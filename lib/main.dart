@@ -66,8 +66,13 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                   ),
                   cursorColor: Colors.white,
+                  textInputAction: TextInputAction.done,
+                  onSubmitted: (val) {
+                    perevod();
+                  },
                   onTapOutside: (val) {
                     focusNode.unfocus();
+                    perevod();
                   },
                   decoration: InputDecoration(
                     hintText: "Input something...",
